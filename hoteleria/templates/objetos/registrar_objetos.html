@@ -1,0 +1,70 @@
+{% extends 'index.html' %}
+
+<!--creamos titulo-->
+{% block titulo %}
+<title> Registrar encontrados </title>
+
+<!---cerramos titulo-->
+{% endblock titulo %}
+
+<!---abrimos el bloque del body-->
+{% block body%}
+
+<div>
+    <!---creamos el formulario para registrar los encontrados y le agregamos el csrf_token para poder guardar-->
+    <form action="" method="POST">
+        <div class="container">
+            {% csrf_token %}
+            <!---->
+
+            {% if error %}
+            <h2> {{error}} </h2>
+            {% else %}
+            <!---{{ encontradoform.as_p }}-->
+
+            <!--contenido creado manual-->
+            {%endif %}
+            <h1>
+                <br>
+                Registro de objetos encontrados
+            </h1>
+            <br>
+            <div class="col-md-3 "> {{encontradoform.entrega.label}} </div>
+            <div class="col-12 col-md-9 "> {{encontradoform.entrega}} </div>
+            <br>
+
+            <div class="col-md-3 "> {{encontradoform.departamento.label}} </div>
+            <div class="col-12 col-md-9 "> {{encontradoform.departamento}} </div>
+            <br>
+
+            <div class="col-md-3 "> {{encontradoform.lugar.label}} </div>
+            <div class="col-12 col-md-9 "> {{encontradoform.lugar}} </div>
+            <br>
+
+            <div class="col-md-3 "> {{encontradoform.fecha.label}} </div>
+            <div class="col-12 col-md-9 "> {{encontradoform.fecha}} </div>
+            <br>
+
+            <div class="col-md-3 "> {{encontradoform.seguridad.label}} </div>
+            <div class="col-12 col-md-9 "> {{encontradoform.seguridad}} </div>
+            <br>
+
+            <div class="col-md-3 "> {{encontradoform.detalle.label}} </div>
+            <div class="col-12 col-md-9 "> {{encontradoform.detalle}} </div>
+            <br>
+
+            <div class="col-md-3 "> {{encontradoform.estado.label}} </div>
+            <div class="col-12 col-md-9 "> {{encontradoform.estado}} </div>
+            <br>
+
+            <div class="col-12 col-md-8 " style="padding-bottom: 10px;">
+                <button type="submit " class="btn btn-primary ">Guardar</button>
+                <button type="submit " class="btn btn-danger ">Cancelar</button>                
+            </div>
+        </div>
+
+</div>
+</form>
+<br>
+</div>
+{% endblock body %}

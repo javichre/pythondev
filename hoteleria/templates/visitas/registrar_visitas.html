@@ -1,0 +1,95 @@
+<!---heredamos del index.html-->
+{% extends 'index.html' %}
+
+<!--creamos el titulo-->
+{% block titulo %}
+<title>Registrar visitas</title>
+{% endblock titulo %}
+
+<!---creamos nuestro body personalizado-->
+{% block body %}
+
+<body>
+    <div class="container">
+
+        <!--creamo un formulario para cargar nuestro form-->
+        <form action="" method="POST">
+
+            <!--llamamos el formulario que creamos en views.py con el nombre de la variable-->
+            <!-- {{ crearform.as_p}} -->
+
+            <!--agregamos el csrf_token sin esto no podemos usar el crud -->
+            {% csrf_token %}
+
+            <!--indicamos primero que hacer si hay algun error-->
+            {% if error %}
+            <h2> {{error}} </h2>
+            <!---sino encuentra errores-->
+            {% else %}
+
+            <!---->
+            {% endif %}
+            <h1>
+                Registro de visitas
+            </h1>
+            <br>
+
+            <!--creamos el formulario de forma manual-->
+            <div class="col-md-3 "> {{crearform.Nombre.label}} </div>
+            <div class="col-12 col-md-8"> {{crearform.Nombre}} </div>
+            <br>
+
+            <div class="col-md-3"> {{crearform.Empresa.label}} </div>
+            <div class="col-12 col-md-6"> {{crearform.Empresa}} </div>
+            <br>
+
+            <div class="col-md-3"> {{crearform.Visitado.label}} </div>
+            <div class="col-12 col-md-8"> {{crearform.Visitado}} </div>
+            <br>
+
+            <div class="col-md-3"> {{crearform.Calidad_de.label}} </div>
+            <div class="col-12 col-md-8"> {{crearform.Calidad_de}} </div>
+            <br>
+
+            <div class="col-md-3"> {{crearform.Departamento.label}} </div>
+            <div class="col-12 col-md-8"> {{crearform.Departamento}} </div>
+            <br>
+
+            <div class="col-md-3"> {{crearform.Motivo_visita.label}} </div>
+            <div class="col-12 col-md-8"> {{crearform.Motivo_visita}} </div>
+            <br>
+
+            <div class="col-md-3"> {{crearform.Fecha_visita.label}} </div>
+            <div class="col-12 col-md-8"> {{crearform.Fecha_visita}} </div>
+            <br>
+
+            <div class="col-md-3"> {{crearform.fecha_creacion.label}} </div>
+            <div class="col-12 col-md-8"> {{crearform.fecha_creacion}} </div>
+            <br>
+
+
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-secondary">enviar</button>
+                <br>
+            </div>
+
+
+
+
+
+            <!--
+            <div style='text-align: center;'>
+               insert your custom barcode setting your data in the GET parameter "data" 
+            <img alt='Barcode Generator TEC-IT' src='https://barcode.tec-it.com/barcode.ashx?data=BEGIN%3AVCARD%0D%0AN%3AJohn+Doe%0D%0ATEL%3BHOME%3BVOICE%3A555-555-5555%0D%0ATEL%3BWORK%3BVOICE%3A666-666-6666%0D%0AEMAIL%3Aemail%40example.com%0D%0AORG%3ATEC-IT%0D%0AURL%3Ahttps%3A%2F%2Fwww.example.com%0D%0AEND%3AVCARD&code=QRCode_Business_vCard&multiplebarcodes=false&translate-esc=false&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=%23000000&bgcolor=%23ffffff&qunit=Mm&quiet=0&eclevel=L'
+            />
+    </div>
+    <div style='padding-top:8px; text-align:center; font-size:15px; font-family: Source Sans Pro, Arial, sans-serif;'>
+       back-linking to www.tec-it.com is required
+    </div>
+    --->
+        </form>
+        <br>
+</body>
+</div>
+
+{% endblock body %}

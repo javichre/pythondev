@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/8aa927cf-78a3-4d82-ac34-ff335a25b042/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/navcatdev",
+    "appService.deploySubpath": "."
+}

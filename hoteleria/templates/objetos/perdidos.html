@@ -1,0 +1,63 @@
+{% extends 'index.html' %} {% block titulo %}
+
+<title>Registrar objetos perdidos</title>
+
+{% endblock titulo %} {% block body %}
+
+<form action="" method="POST">
+    <div class="container">
+        <!--- {{ perdidoform.as_p }} -->{% csrf_token %} {% if error %}
+        <h2> {{error}} </h2>
+        {% else %}
+        <!---->
+        <br>
+        <br>
+        <!--contenido creado manual-->
+        {%endif %}
+
+
+        <div class="col-md-3"> {{perdidoform.cliente.label}} </div>
+        <div class="col-12 col-md-9"> {{perdidoform.cliente}} </div>
+        <br>
+
+        <div class="col-md-3"> {{perdidoform.habitacion.label}} </div>
+        <div class="col-12 col-md-9"> {{perdidoform.habitacion}} </div>
+        <br>
+
+
+        <div class="col-md-3"> {{perdidoform.fecha.label}} </div>
+        <div class="col-12 col-md-9"> {{perdidoform.fecha}} </div>
+        <br>
+
+
+        <div class="col-md-3"> {{perdidoform.empleado.label}} </div>
+        <div class="col-12 col-md-9"> {{perdidoform.empleado}} </div>
+        <br>
+
+
+        <div class="col-md-3"> {{perdidoform.lugar.label}} </div>
+        <div class="col-12 col-md-9"> {{perdidoform.lugar}} </div>
+        <br>
+
+
+        <div class="col-md-3"> {{perdidoform.reporte.label}} </div>
+        <div class="col-12 col-md-9"> {{perdidoform.reporte}} </div>
+        <br>
+
+
+        <div class="col-md-3"> {{perdidoform.objetos.label}} </div>
+        <div class="col-12 col-md-9"> {{perdidoform.objetos}} </div>
+        <br>
+
+        <div class="col-md-3"> {{perdidoform.estado.label}} </div>
+        <div class="col-12 col-md-9"> {{perdidoform.estado}} </div>
+        <br>
+
+        <div class="col-12 col-md-8">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="submit" class="btn btn-danger">Cancelar</button>
+        </div>
+
+</form>
+</div>
+{% endblock body %}

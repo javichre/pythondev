@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* le asigno un tipo de letra a todo el body */
+
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.navbar {
+    background-color: rgb(1,54,119);
+}
+ul li a{
+    color: whitesmoke;
+}
+ul li a:hover {
+    background-color: #93c8e7;
+    border-radius: 5px;
+}
+h1 {
+    color: #184175;
+    text-align: center;
+}
+h2 {
+    text-align: center;
+}
+/* el contenor evita que el contenido tome el 100% del body, y lo que tiene el container lo pongo en el centro*/
+.containe {
+    text-align: center;
+}
+/* creo esta clase para poder asignar que porcentaje del body usara mi div y le doy un padding */
+.contenedor {
+    width: 92%;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+.container {
+    background-color: #93c8e7;
+    box-shadow: 5px 5px 5px 5px #aaaaaa;
+}
+form{
+    margin-left: auto;
+    margin-right: auto;
+}
+   
+/* etiquetas a del index*/
+.a-index {
+    text-decoration: none; 
+}
+.a-index:hover{
+    background-color: #93c8e7;
+    border-radius: 5px;
+    text-decoration: none;
+}
+/*Damos color y posicionamos el contenido de las tablas*/
+
+.tabla {
+    border: 1px solid whitesmoke;
+}
+.tabla thead {
+    background-color: #184175;
+}
+table thead th {
+    text-align: center;
+}
+table tbody tr td {
+    text-align: center;
+}

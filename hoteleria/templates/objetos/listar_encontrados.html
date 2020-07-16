@@ -1,0 +1,93 @@
+<!---heredamos del index.html-->
+{% extends 'index.html' %}
+
+<!---cargamos los archivos estaticos-->
+{% load static %}
+
+<!---titulo-->
+{%block titulo%}
+<title> Listado de encontrados </title> {% endblock titulo%}
+
+<!---body-->
+{% block body%}
+
+<!---creo un ciclo for para que me traiga cada dato que cumple la condicion-->
+{% if object_list%}
+<br>
+<div class="contenedor">
+    <h1>Listado de objetos encontrados</h1>
+    <br>
+
+    <!---botones de manejo para los diferentes filtros-->
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a href="{% url 'objetos:listar_encontrados' %}" class="btn btn-primary">Abiertos</a>
+        <a href="{% url 'objetos:Entregados' %} " class="btn btn-primary">Cerrados</a>
+        <a href="{% url 'objetos:todos_encontrados' %} " class="btn btn-primary">Todos</a>
+        <a href="{% url 'objetos:registrar_encontrado' %} " class="btn btn-primary">Registrar</a>
+    </div>
+    <br>
+    <br>
+
+    <!---creo el modelo que definira los datos que cargare -->
+    <table class="table tabla">
+        <thead class="table-dark">
+            <tr style="text-align: center;">
+                <th scope="col"> Entrega </th>
+                <th scope="col"> <a href=" {% url 'objetos:filtro_departamento' %} " style="color: aliceblue;">Departamento</a></th>
+                <th scope="col">Lugar</th>
+                <th scope="col"> <a href=" {% url 'objetos:filtro_fecha' %} " style="color: aliceblue;">Fecha</a> </th>
+                <th scope="col"> <a href=" {% url 'objetos:filtro_reporte' %} " style="color: aliceblue;">Reporte</a></th>
+                <th scope="col">Recibe</th>
+                <th scope="col">Cerrado</th>
+                <th scope="col">Objetos</th>
+                <th scope="col">Accion</th>
+            </tr>
+        </thead>
+
+        <!----aqui cargo los datos desde mi modelo/base de datos-->
+        <tbody>
+            {% for encontrados in object_list%}
+            <tr>
+                <td scope="row"> {{encontrados.entrega}} </td>
+                <td> {{encontrados.departamento}} </td>
+                <td> {{encontrados.lugar}} </td>
+                <td>{{encontrados.fecha}} </td>
+                <td> {{encontrados.reporte}} </td>
+                <td> {{encontrados.seguridad}} </td>
+                <td> {{encontrados.estado}} </td>
+                <td> {{encontrados.detalle}}</td>
+                <td> <a href="{%url 'objetos:editar_encontrado' encontrados.reporte %}" class="btn btn-primary">Editar</a>
+                    <a href="{%url 'objetos:eliminar_encontrado' encontrados.reporte %}" class="btn btn-danger">Eliminar</a> </td>
+            </tr>
+            <!--cierro el ciclo for-->
+            {% endfor %}
+        </tbody>
+    </table>
+    <!--le pedimos que si tiene un previws que no los muestre-->
+    {% if page_obj.has_previous %}
+    <a href="?page= {{ page_obj.previous_page_number }} " class="btn btn-primary inpt">Previous</a> {% endif %}
+
+    <!---validamos si existe una pagina siguiente le decimos que de ser asi no las muestre-->
+    {% if page_obj.has_next %}
+    <a href="?page= {{ page_obj.next_page_number }} " class="btn btn-primary inpt">Next</a> {% endif %}
+</div>
+<br>
+
+<!--creo una condicion si no se cumple el ciclo for-->
+{% else %}
+
+<!---muestro esto si no se cumple la condicion del ciclo for-->
+<h1>No existen registros</h1>
+<div class="container">
+    <br>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a href="{% url 'objetos:listar_encontrados' %}" class="btn btn-primary">Abiertos</a>
+        <a href="{% url 'objetos:Entregados' %} " class="btn btn-primary">Cerrados</a>
+        <a href="{% url 'objetos:todos_encontrados' %} " class="btn btn-primary">Todos</a>
+        <a href="{% url 'objetos:registrar_encontrado' %} " class="btn btn-primary">Registrar</a>
+    </div>
+    <br>
+    <br>
+  
+</div>
+{% endif%} {% endblock body%}

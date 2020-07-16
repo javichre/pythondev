@@ -1,0 +1,57 @@
+{% extends 'index.html' %} {% block titulo %}
+<title>Listar visitas</title>
+{% endblock titulo %}
+
+
+<!--creamos manualmente el contenido que queremos mostrar-->
+
+
+
+{% block body %}
+<div class="contenedor">
+    <br>
+
+    <h1> Listado de visitas </h1>
+    <br>
+    <br> {% if visitas%}
+    <table class="table tabla">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col"> <a href=" {% url 'objetos:filtro_departamento_per' %} " style="color: aliceblue;">Empresa</a></th>
+                <th scope="col"> <a href=" {% url 'objetos:filtro_fecha_per' %} " style="color: aliceblue;">Visitado</a> </th>
+                <th scope="col">En calidad</th>
+                <th scope="col">Departamento</th>
+                <th scope="col"> Motivo visita</th>
+                <th scope="col">Fecha visita</th>
+                <!-- <th scope="=col">Fecha creacion</th> -->
+                <th scope="col">Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for visitas in visitas%}
+            <tr>
+                <td scope="row"> {{visitas.Nombre}} </td>
+                <td> {{visitas.Empresa}} </td>
+                <td> {{visitas.Visitado}} </td>
+                <td>{{visitas.Calidad_de}} </td>
+                <td> {{visitas.Departamento}} </td>
+                <td> {{visitas.Motivo_visita}} </td>
+                <td> {{visitas.Fecha_visita}} </td>
+                <!--  <td> {{visitas.fecha_creacion}} </td> -->
+                <td> <a href="" class="btn btn-primary">Entrada</a> <a href="" class="btn btn-danger">Salida</a> </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% else %}
+<h1>
+    apuesto que no hay nada
+</h1>
+
+{% endif %}
+<!---Cerramos el cuerpo del contenido-->
+{% endblock body %}
