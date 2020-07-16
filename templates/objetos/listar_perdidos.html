@@ -1,0 +1,95 @@
+{% extends 'index.html' %} {% block titulo %}
+<title>Listar Objetos perdidos</title>
+<!---->
+{% endblock titulo %}
+
+<!---body -->
+{% block body%} {% if object_list%}
+<div class="contenedor">
+    <h1>Objetos reportados como perdidos</h1>
+    <br>
+    <br>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a href="{% url 'objetos:perdidos_sin_hayar' %}" class="btn btn-primary">Abiertos</a>
+        <a href="{% url 'objetos:perdidos_encontrados' %} " class="btn btn-primary">Cerrados</a>
+        <a href="{% url 'objetos:listar_perdidos' %} " class="btn btn-primary">Todos</a>
+        <a href="{% url 'objetos:registrar_perdidos' %} " class="btn btn-primary">Registrar</a>
+    </div>
+    <br>
+    <br>
+<!--
+    <div class="buscar">
+        <div class="row">
+            <div class="col-md-12 col-md-6 search">
+                <form action="" method="GET">
+                    <div id="custom-search-input">
+                        <div class="input-group col-md-12">
+                            <input type="text" class="form-control col-md-3" placeholder="Buscar" name="buscar">
+                            <span class="input-group-list">
+                                <i class="icon icon-search"></i>
+                                <button type="submit" class="btn btn-secondary">Buscar </button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+-->
+    <br>
+    <table class="table tabla">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Cliente</th>
+                <th scope="col"> <a href=" {% url 'objetos:filtro_departamento_per' %} "
+                        style="color: aliceblue;">Habitacion</a></th>
+                <th scope="col"> <a href=" {% url 'objetos:filtro_fecha_per' %} " style="color: aliceblue;">Fecha</a>
+                </th>
+                <th scope="col">Empleado</th>
+                <th scope="col">Lugar</th>
+                <th scope="col"> Reporte</th>
+                <th scope="col">Objetos</th>
+                <th scope="=col">Usuario</th>
+                <th scope="col">Encontrado</th>
+                <th scope="col">Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for encontrados in object_list%}
+            <tr>
+                <td scope="row"> {{encontrados.cliente}} </td>
+                <td> {{encontrados.habitacion}} </td>
+                <td> {{encontrados.fecha}} </td>
+                <td>{{encontrados.empleado}} </td>
+                <td> {{encontrados.lugar}} </td>
+                <td> {{encontrados.reporte}} </td>
+                <td> {{encontrados.objetos}} </td>
+                <td> {{ user.username }} </td>
+                <td> {{encontrados.estado}} </td>
+                <td> <a href="{% url 'objetos:editar_perdidos' encontrados.reporte %}"
+                        class="btn btn-primary">Editar</a>
+                    <a href="{%url 'objetos:eliminar_encontrado' encontrados.reporte %}"
+                        class="btn btn-danger">Eliminar</a> </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="" class="btn btn-primary">previus</a>
+    <a href="" class="btn btn-primary">Next</a>
+</div>
+{% else %}
+<h1>No se han reportado objetos perdidos</h1>
+<br>
+<div class="container">
+    <br>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a href="{% url 'objetos:perdidos_sin_hayar' %}" class="btn btn-primary">Abiertos</a>
+        <a href="{% url 'objetos:perdidos_encontrados' %} " class="btn btn-primary">Cerrados</a>
+        <a href="{% url 'objetos:listar_perdidos' %} " class="btn btn-primary">Todos</a>
+        <a href="{% url 'objetos:registrar_perdidos' %} " class="btn btn-primary">Registrar</a>
+    </div>
+    <br>
+    <br>
+  
+</div>
+{% endif%} {% endblock body%}

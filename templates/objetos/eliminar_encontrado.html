@@ -1,0 +1,16 @@
+{% extends 'index.html' %} {% block titulo %}
+<title> Eliminar encontrado </title>{% endblock titulo %} {% block body%}
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <h2>Desea eliminar el reporte {{encontrado.reporte}} ?</h2>
+        {{ encontradoform.as_p }}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="{% url 'objetos:listar_encontrados' %}" class="btn btn-primary">Cancelar</a>
+
+
+
+
+    </form>
+    {% endblock body %}
+</div>

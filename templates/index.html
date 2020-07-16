@@ -1,0 +1,157 @@
+<!---cargar archivos estaticos-->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+{% block head %}
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <!--- fuentes -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
+
+    <!---estilos css-->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <!---icon-->
+    <link rel="shortcut icon" href="{% static 'img/python.png' %}">
+
+
+    <!---titulo-->
+    {% block titulo %}
+    <title>Index</title> {% endblock titulo%}
+</head>
+
+<style>
+    .inp {
+        -moz-border-radius: 25px;
+        -webkit-border-radius: 20px;
+        border-radius: 10px;
+        border: 1px solid #000000;
+        padding: 0 4px 0 4px;
+        height: 30px;
+    }
+</style>
+{% endblock head %}
+
+<body>
+    <!---navbar-->
+    {% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+        <a class="navbar-brand" href=" {% url 'index' %} "><img src=" {% static 'img/main_logo.jpeg' %} " alt=" "
+                style="width: 130px; border-radius: 10px;"> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto ">
+                <li class="nav-item active ">
+                    <a class="nav-link  " href=" {% url 'objetos:listar_encontrados' %} ">Objetos encontrados<span
+                            class="sr-only ">(current)</span></a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link " href=" {% url 'objetos:listar_perdidos' %} ">Objetos perdidos</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link " href=" {% url 'visitas:listar_visitas' %} ">Visitas</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link " href="# ">Control de personal</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    {% endblock navbar %}
+    <br>
+    <br>
+    <br> {% block body %}
+    <span class="glyphicon glyphicon-search " aria-hidden="true "></span>
+    <h1>Manejo de personal e incidencias</h1>
+    <h4 class="containe ">Bienvenido {{user.username}}</h4>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!---contenido de opciones-->
+    <div class="containe ">
+        <div class="row ">
+            <div class="col-sm-3 ap ">
+                <div class="thumbnail ">
+                    <div class=" " style="width: 18rem; ">
+                        <!---  <a href="registrar_objetos.html "> <img src="img/perdidos.svg " class="card-img-top " alt="... " width="400px "></a> -->
+                        <img src="{% static 'img/perdidos.png'%} " alt=" ">
+                        <br>
+                        <a href="{% url 'objetos:todos_encontrados' %}" class="a-index">Objetos encontrados</a>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <br>
+            <div class="col-sm-3 ">
+                <div class="thumbnail ">
+                    <div class=" " style="width: 18rem; ">
+                        <!---  <a href="registrar_objetos.html "> <img src="img/perdidos.svg " class="card-img-top " alt="... " width="400px "></a> -->
+                        <img src="{% static 'img/perdi.jpg'%} " alt=" ">
+                        <br>
+                        <br>
+                        <a href="{% url 'objetos:listar_perdidos' %}" class="a-index">Objetos perdidos</a>
+                    </div>
+                </div>
+                <br>
+            </div>
+
+            <div class="col-sm-3 ">
+                <div class="thumbnail ">
+                    <div class=" " style="width: 18rem; ">
+                        <img src="{% static 'img/visi.jpg' %} " alt=" ">
+                        <br>
+                        <a href="{% url 'visitas:crear_visitas' %} " class="a-index">Visitas</a>
+                        <div class="card-body ">
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+
+            <div class="col-sm-3 ">
+                <div class="thumbnail ">
+                    <div class=" " style="width: 18rem; ">
+                        <img src=" {%static 'img/team.jpg' %} " alt=" ">
+                        <!--<img src="img/loncin.jpg " class="card-img-top " alt="... "> -->
+                        <br>
+                        <a href=" " onclick="saludar() " class="a-index">Control del personal</a>
+                        <div class="card-body ">
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <!--{{perms.objetos.view_encontrados}}-->
+    {%endblock body %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js "
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo " crossorigin="anonymous ">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js "
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1 " crossorigin="anonymous ">
+    </script>
+    <script src="{% static 'js/bootstrap.min.js' %} "></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js "></script>
+    <script src=" {%static 'js/funciones.js' %} ">
+    </script>
+
+</body>
+
+</html>
